@@ -1,0 +1,17 @@
+Que1:Which field of the Customers table is the primary key?
+ANS:cnum is the primary key in customer
+
+Que2:What is the 4th column of the Customers table?
+ANS:Rating in 4th column in customers table.
+
+Que3:What is another word for row? For column?
+ANS: row == record or tuple
+     column== attributes.
+ 
+ Que4:Why isn’t it possible to see the first five rows of a table?
+ ANS:In DBMS data is stored in file which is stored  sequentially.
+     In RDBMS data stored in tables which is not file ,But every row in table is file.
+     And rows are stored not sequentially,
+     Hence when we try to see row every time it displays row randomly according to address,
+     hence it is not possible to see the first row of table.
+      
