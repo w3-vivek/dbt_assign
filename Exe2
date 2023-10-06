@@ -1,0 +1,122 @@
+1. Display the Supplier table in the descending order of CITY.
+
+
+w3_80747_vivek>select * from S order by City desc;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s2   | Jones |     10 | paris  |
+| s3   | Blake |     30 | paris  |
+| s1   | Smith |     20 | london |
+| s4   | Clark |     20 | london |
+| s5   | Adams |     30 | athens |
++------+-------+--------+--------+
+
+
+
+2. Display the Part Table in the ascending order of CITY and within the city in the ascending order of Part names.
+
+w3_80747_vivek>select * from P
+    -> order by City,Pname;
++------+-------+-------+--------+--------+
+| p#   | Pname | Color | Weight | City   |
++------+-------+-------+--------+--------+
+| p6   | Cog   | Red   |     19 | london |
+| p1   | Nut   | Red   |     12 | london |
+| p4   | Screw | Red   |     14 | london |
+| p2   | Bolt  | Green |     17 | Paris  |
+| p5   | Cam   | Blue  |     12 | Paris  |
+| p3   | Screw | Blue  |     17 | Rome   |
++------+-------+-------+--------+--------+
+
+3. Display all the Suppliers with a status between 10 and 20.
+
+w3_80747_vivek>select * from S
+    -> where Status between 10 and 20;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s1   | Smith |     20 | london |
+| s2   | Jones |     10 | paris  |
+| s4   | Clark |     20 | london |
++------+-------+--------+--------+
+
+4. Display all the Parts and their Weight, which are not in the range of 10 and 15.
+
+
+w3_80747_vivek> select Pname ,Weight from P  where Weight <10 or Weight>15;
++-------+--------+
+| Pname | Weight |
++-------+--------+
+| Bolt  |     17 |
+| Screw |     17 |
+| Cog   |     19 |
++-------+--------+
+
+5. Display all the Part names starting with the letter 'S'
+
+w3_80747_vivek>select Pname from P  where Pname like 's%';
+                
+                (or)
+                
+w3_80747_vivek>select Pname from P 
+    -> where Pname>='s' and Pname<'t';
+
++-------+
+| Pname |
++-------+
+| Screw |
+| Screw |
++-------+
+
+6. Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+
+
+w3_80747_vivek>select * from S 
+    -> where City like 'l%';
+    
+         (or)
+ w3_80747_vivek>select * from S 
+    -> where City>='l' and City<'m';
+        
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s1   | Smith |     20 | london |
+| s4   | Clark |     20 | london |
++------+-------+--------+--------+
+
+7. Display all the Projects, with the third letter in JNAME as ‘n’.
+
+
+w3_80747_vivek>select * from J
+    -> where Jname like '__n%';
++------+---------+--------+
+| j#   | Jname   | City   |
++------+---------+--------+
+| j2   | Punch   | Rome   |
+| j4   | Console | Athens |
++------+---------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
