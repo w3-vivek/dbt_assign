@@ -1,0 +1,163 @@
+Display all the data from the S table.
+
+w3_80747_vivek>select * from S;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s1   | Smith |     20 | london |
+| s2   | Jones |     10 | paris  |
+| s3   | Blake |     30 | paris  |
+| s4   | Clark |     20 | london |
+| s5   | Adams |     30 | athens |
++------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+6. Display only the S# and SNAME fields from the S table.
+w3_80747_vivek>select `s#`,Sname from S;
++------+-------+
+| s#   | Sname |
++------+-------+
+| s1   | Smith |
+| s2   | Jones |
+| s3   | Blake |
+| s4   | Clark |
+| s5   | Adams |
++------+-------+
+
+
+7. Display the PNAME and COLOR from the P table
+for the CITY=”London”.
+
+w3_80747_vivek>select Pname,Color from P  where City='london';
++-------+-------+
+| Pname | Color |
++-------+-------+
+| Nut   | Red   |
+| Screw | Red   |
+| Cog   | Red   |
++-------+-------+
+
+
+8. Display all the Suppliers from London.
+
+w3_80747_vivek>select * from S
+    -> where City='london';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s1   | Smith |     20 | london |
+| s4   | Clark |     20 | london |
++------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+9. Display all the Suppliers from Paris or Athens.
+
+w3_80747_vivek>select * from S where city in('paris','athens');
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s2   | Jones |     10 | paris  |
+| s3   | Blake |     30 | paris  |
+| s5   | Adams |     30 | athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+10. Display all the Projects in Athens
+
+w3_80747_vivek>select * from J where City='athens';
++------+---------+--------+
+| j#   | Jname   | City   |
++------+---------+--------+
+| j3   | Reader  | Athens |
+| j4   | Console | Athens |
++------+---------+--------+
+2 rows in set (0.00 sec)
+
+11. Display all the Partnames with the between 12 and 14 (inclusive of both).
+
+w3_80747_vivek>select * from P
+    -> where weight between 12 and 14;
++------+-------+-------+--------+--------+
+| p#   | Pname | Color | Weight | City   |
++------+-------+-------+--------+--------+
+| p1   | Nut   | Red   |     12 | london |
+| p4   | Screw | Red   |     14 | london |
+| p5   | Cam   | Blue  |     12 | Paris  |
++------+-------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+12. Display all the Suppliers with a Status greater than or equal to 20.
+
+w3_80747_vivek>select * from S
+    -> where Status >= 20;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s1   | Smith |     20 | london |
+| s3   | Blake |     30 | paris  |
+| s4   | Clark |     20 | london |
+| s5   | Adams |     30 | athens |
++------+-------+--------+--------+
+4 rows in set (0.00 sec)
+
+13. Display all the Suppliers except the Suppliers from London.
+
+w3_80747_vivek>select * from S where City!='london';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s2   | Jones |     10 | paris  |
+| s3   | Blake |     30 | paris  |
+| s5   | Adams |     30 | athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+14. Display only the Cities from where the Suppliers come from.
+
+
+w3_80747_vivek>select distinct city from S;
++--------+
+| city   |
++--------+
+| london |
+| paris  |
+| athens |
++--------+
+3 rows in set (0.01 sec)
+
+15. Assuming that the Part Weight is in GRAMS,display the same in MILLIGRAMS and KILOGRAMS.
+
+w3_80747_vivek>select Weight,Weight*1000 "MILIGRAMS",Weight/1000 "KILOGRAM" from P;
++--------+-----------+----------+
+| Weight | MILIGRAMS | KILOGRAM |
++--------+-----------+----------+
+|     12 |     12000 |    0.012 |
+|     17 |     17000 |    0.017 |
+|     17 |     17000 |    0.017 |
+|     14 |     14000 |    0.014 |
+|     12 |     12000 |    0.012 |
+|     19 |     19000 |    0.019 |
++--------+-----------+----------+
+6 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
