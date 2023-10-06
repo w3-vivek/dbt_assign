@@ -1,0 +1,160 @@
+1. Display all the Supplier names with the initial letter capital.
+
+w3_80747_vivek>select concat( upper(substr(Sname,1,1)),lower(substr(Sname,2))) from S;
++----------------------------------------------------------+
+| concat( upper(substr(Sname,1,1)),lower(substr(Sname,2))) |
++----------------------------------------------------------+
+| Smith                                                    |
+| Jones                                                    |
+| Blake                                                    |
+| Clark                                                    |
+| Adams                                                    |
++----------------------------------------------------------+
+
+
+2. Display all the Supplier names in upper case.
+
+w3_80747_vivek>select upper(Sname) from S;
++--------------+
+| upper(Sname) |
++--------------+
+| SMITH        |
+| JONES        |
+| BLAKE        |
+| CLARK        |
+| ADAMS        |
++--------------+
+
+
+3. Display all the Supplier names in lower case.
+
+w3_80747_vivek>select lower(Sname) from S;
++--------------+
+| lower(Sname) |
++--------------+
+| smith        |
+| jones        |
+| blake        |
+| clark        |
+| adams        |
++--------------+
+
+4. Display all the Supplier names padded to 25 characters, with spaces on the left.
+
+
+w3_80747_vivek>select lpad(Sname,25,' ') from S;
++---------------------------+
+| lpad(Sname,25,' ')        |
++---------------------------+
+|                     Smith |
+|                     Jones |
+|                     Blake |
+|                     Clark |
+|                     Adams |
++---------------------------+
+
+
+5. Display all the Supplier names (with ‘la’replaced by ‘ro’).
+
+
+w3_80747_vivek>select replace (Sname ,'la','ro') from S;
++----------------------------+
+| replace (Sname ,'la','ro') |
++----------------------------+
+| Smith                      |
+| Jones                      |
+| Broke                      |
+| Crork                      |
+| Adams                      |
++----------------------------+
+
+6. Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced with ‘o’.
+
+
+w3_80747_vivek>select replace( replace (Sname,'l','r'),'a','o') from S;
++-------------------------------------------+
+| replace( replace (Sname,'l','r'),'a','o') |
++-------------------------------------------+
+| Smith                                     |
+| Jones                                     |
+| Broke                                     |
+| Crork                                     |
+| Adoms                                     |
++-------------------------------------------+
+
+7. Display the Supplier names and the lengths of the names.
+
+w3_80747_vivek>select Sname ,length(Sname)'length' from S;
++-------+--------+
+| Sname | length |
++-------+--------+
+| Smith |      5 |
+| Jones |      5 |
+| Blake |      5 |
+| Clark |      5 |
+| Adams |      5 |
++-------+--------+
+
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+
+w3_80747_vivek>select * from S where  soundex(Sname)=soundex('bloke');
++------+-------+--------+-------+
+| S#   | Sname | Status | City  |
++------+-------+--------+-------+
+| s3   | Blake |     30 | paris |
++------+-------+--------+-------+
+
+
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+
+
+w3_80747_vivek>select Sname, 
+ case when Status=10 then 'TEN' 
+ when Status=20 then 'TWENTY' 
+ when Status=30 then 'THIRTY'
+ end "status" 
+ from S;
++-------+--------+
+| Sname | status |
++-------+--------+
+| Smith | TWENTY |
+| Jones | TEN    |
+| Blake | THIRTY |
+| Clark | TWENTY |
+| Adams | THIRTY |
++-------+--------+
+
+10. Display the current day (e.g. Thursday).
+
+w3_80747_vivek>select dayname(sysdate()) from dual;
++--------------------+
+| dayname(sysdate()) |
++--------------------+
+| Friday             |
++--------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
