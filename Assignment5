@@ -1,0 +1,122 @@
+1) Write a query that will give you all orders for more than Rs. 1,000.
+
+w3_80747_vivek>SELECT * from ORDERS
+    -> where amt>1000;
++------+---------+------------+------+------+
+| onum | amt     | odate      | cnum | Snum |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5169.54 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2004 | 1001 |
++------+---------+------------+------+------+
+
+2) Write a query that will give you the names and cities of all salespeople in London with a commission above .10.
+
+w3_80747_vivek>select Sname,City
+    -> from SALESPEOPLE
+    -> where City='london' and Comm>.10;
++--------+--------+
+| Sname  | City   |
++--------+--------+
+| peel   | london |
+| motika | london |
++--------+--------+
+
+3) Write a query on the Customers table whose output will exclude all customers with a rating <= 100, unless they are located in Rome.
+
+w3_80747_vivek>select * from CUSTOMER  WHERE rating>100 or City='rome';
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2002 | giovanni | rome     |    200 | 1003 |
+| 2003 | liu      | san jose |    200 | 1002 |
+| 2004 | grass    | berlin   |    300 | 1002 |
+| 2008 | cisneros | san jose |    300 | 1007 |
+| 2007 | pereira  | rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+
+4)
+What will be the output from the following query?
+Select * from Orders
+where (amt < 1000 OR
+NOT (odate = ‘1990-10-03’
+AND cnum > 2003));
+
+w3_80747_vivek>Select * from ORDERS  where (amt < 1000 OR NOT (odate = '1990-10-03' AND cnum > 2003));
++------+---------+------------+------+------+
+| onum | amt     | odate      | cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2001 | 1001 |
+| 3005 | 5169.54 | 1990-10-03 | 2003 | 1002 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2004 | 1001 |
++------+---------+------------+------+------+
+
+
+5)
+What will be the output of the following query?
+Select * from Orders
+where NOT ((odate = ‘1990-10-03’ OR snum
+>1006) AND amt >= 1500);
+
+
+w3_80747_vivek>Select * from ORDERS where NOT ((odate = '1990-10-03' OR snum >1006) AND amt >= 1500);
++------+---------+------------+------+------+
+| onum | amt     | odate      | cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2001 | 1001 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2004 | 1001 |
++------+---------+------------+------+------+
+
+
+6)What is a simpler way to write this query?
+Select snum, sname, city, comm From SALESPEOPLE where
+(comm > .12 OR comm <.14);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
