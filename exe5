@@ -1,0 +1,250 @@
+1. Display the Supplier name and the Quantity sold.
+
+w3_80747_vivek>select sname ,sum(qty) from SP,S where SP.`s#`=S.`s#` group by sname;
++-------+----------+
+| sname | sum(qty) |
++-------+----------+
+| Smith |      900 |
+| Jones |     3200 |
+| Blake |      700 |
+| Clark |      600 |
+| Adams |     3100 |
++-------+----------+
+
+2. Display the Part name and Quantity sold.
+
+w3_80747_vivek>select pname ,sum(qty) from SP,P where SP.`p#`=P.`p#` group by pname;
++-------+----------+
+| pname | sum(qty) |
++-------+----------+
+| Nut   |     1000 |
+| Screw |     4800 |
+| Cam   |     1100 |
+| Cog   |     1300 |
+| Bolt  |      300 |
++-------+----------+
+
+3. Display the Project name and Quantity sold.
+
+w3_80747_vivek>select Jname ,sum(qty) from SP,J where SP.`J#`=J.`j#` group by jname;
++-----------+----------+
+| Jname     | sum(qty) |
++-----------+----------+
+| Sorter    |      800 |
+| Console   |     3300 |
+| Punch     |     1200 |
+| Reader    |      500 |
+| Collector |     1100 |
+| Terminal  |      400 |
+| Tape      |     1200 |
++-----------+----------+
+
+4. Display the Supplier name, Part name, Project name and Quantity sold.
+
+w3_80747_vivek>select Sname,pname,Jname ,sum(qty) from SP,J,P,S where SP.`J#`=J.`j#`and SP.`s#`=S.`s#` and SP.`p#`=P.`p#` group by Sname,pname,Jname;
++-------+-------+-----------+----------+
+| Sname | pname | Jname     | sum(qty) |
++-------+-------+-----------+----------+
+| Jones | Screw | Sorter    |      400 |
+| Blake | Screw | Sorter    |      200 |
+| Smith | Nut   | Sorter    |      200 |
+| Adams | Cog   | Punch     |      200 |
+| Jones | Cam   | Punch     |      100 |
+| Blake | Screw | Punch     |      500 |
+| Jones | Screw | Punch     |      200 |
+| Adams | Bolt  | Punch     |      200 |
+| Clark | Cog   | Reader    |      300 |
+| Jones | Screw | Reader    |      200 |
+| Adams | Cog   | Console   |      500 |
+| Adams | Cam   | Console   |      400 |
+| Adams | Screw | Console   |     1000 |
+| Jones | Screw | Console   |      500 |
+| Adams | Bolt  | Console   |      100 |
+| Smith | Nut   | Console   |      700 |
+| Adams | Nut   | Console   |      100 |
+| Adams | Cam   | Collector |      500 |
+| Jones | Screw | Collector |      600 |
+| Jones | Screw | Terminal  |      400 |
+| Clark | Cog   | Tape      |      300 |
+| Adams | Cam   | Tape      |      100 |
+| Jones | Screw | Tape      |      800 |
++-------+-------+-----------+----------+
+
+5. Display the Supplier name, Supplying Parts to a Project in the same City.
+
+w3_80747_vivek>select sname,pname ,jname from J,P,S where J.city=P.city and P.city=S.city;
++-------+-------+-----------+
+| sname | pname | jname     |
++-------+-------+-----------+
+| Jones | Cam   | Sorter    |
+| Blake | Cam   | Sorter    |
+| Jones | Bolt  | Sorter    |
+| Blake | Bolt  | Sorter    |
+| Smith | Cog   | Collector |
+| Clark | Cog   | Collector |
+| Smith | Screw | Collector |
+| Clark | Screw | Collector |
+| Smith | Nut   | Collector |
+| Clark | Nut   | Collector |
+| Smith | Cog   | Tape      |
+| Clark | Cog   | Tape      |
+| Smith | Screw | Tape      |
+| Clark | Screw | Tape      |
+| Smith | Nut   | Tape      |
+| Clark | Nut   | Tape      |
++-------+-------+-----------+
+
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold.
+
+w3_80747_vivek>select pname,sum(qty),color from SP,P  where SP.`P#`=P.`p#` group by pname,color  having  Color='Red';
++-------+----------+-------+
+| pname | sum(qty) | color |
++-------+----------+-------+
+| Nut   |     1000 | Red   |
+| Screw |     1300 | Red   |
+| Cog   |     1300 | Red   |
++-------+----------+-------+
+
+
+7. Display all the Quantity sold by Suppliers with the Status = 20.
+
+w3_80747_vivek>select sname,status,sum(qty) from SP,S where SP.`s#`= S.`s#`group by status,sname  having status=20;
++-------+--------+----------+
+| sname | status | sum(qty) |
++-------+--------+----------+
+| Smith |     20 |      900 |
+| Clark |     20 |      600 |
++-------+--------+----------+
+
+8. Display all the Parts and Quantity with a Weight > 14.
+w3_80747_vivek>select pname,weight ,sum(qty) from SP,P where SP.`p#`= P.`p#`group by weight,pname  having weight>14;
++-------+--------+----------+
+| pname | weight | sum(qty) |
++-------+--------+----------+
+| Screw |     17 |     3500 |
+| Cog   |     19 |     1300 |
+| Bolt  |     17 |      300 |
++-------+--------+----------+
+
+
+9. Display all the Project names and City, which has bought more than 500 Parts.
+
+w3_80747_vivek>select jname,city,sum(qty) from SP,J where SP.`j#`=J.`j#`group by city,jname having sum(qty)>500;
++-----------+--------+----------+
+| jname     | city   | sum(qty) |
++-----------+--------+----------+
+| Sorter    | Paris  |      800 |
+| Console   | Athens |     3300 |
+| Punch     | Rome   |     1200 |
+| Collector | london |     1100 |
+| Tape      | london |     1200 |
++-----------+--------+----------+
+
+10. Display all the Part names and Quantity sold that have a Weight less than 15.
+
+
+w3_80747_vivek>select pname,weight ,sum(qty) from SP,P where SP.`p#`= P.`p#`group by weight,pname  having weight<15;
++-------+--------+----------+
+| pname | weight | sum(qty) |
++-------+--------+----------+
+| Nut   |     12 |     1000 |
+| Cam   |     12 |     1100 |
+| Screw |     14 |     1300 |
++-------+--------+----------+
+
+11. Display all the Employee names and the name of their Managers.
+
+w3_80747_vivek>SELECT A.EMPNAME  ,B.EMPNAME MGR FROM SEMP A,SEMP B WHERE A.DEPTHEAD=B.EMPNO;
++---------+-------+
+| EMPNAME | MGR   |
++---------+-------+
+| ALI     | SUNIL |
+| GEORGE  | HIREN |
++---------+-------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
