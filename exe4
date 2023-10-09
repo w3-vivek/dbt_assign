@@ -1,0 +1,173 @@
+1.Display the minimum Status in the Supplier table.
+
+w3_80747_vivek>select min(status) from S;
++-------------+
+| min(status) |
++-------------+
+|          10 |
++-------------+
+
+2.Display the maximum Weight in the Parts table.
+
+w3_80747_vivek>select max(weight) from P;
++-------------+
+| max(weight) |
++-------------+
+|          19 |
++-------------+
+
+3.Display the average Weight of the Parts.
+
+w3_80747_vivek>select avg(weight) from P;
++--------------------+
+| avg(weight)        |
++--------------------+
+| 15.166666666666666 |
++--------------------+
+
+4.Display the total Quantity sold for part ‘P1’.
+
+w3_80747_vivek>select `p#`,sum(QTY) from SP where `p#`='p1' group by `p#`;
++------+----------+
+| p#   | sum(QTY) |
++------+----------+
+| P1   |     1000 |
++------+----------+
+
+5.Display the total Quantity sold for each part.
+
+w3_80747_vivek>select `p#`,sum(QTY) from SP  group by `p#`order by 1;
++------+----------+
+| p#   | sum(QTY) |
++------+----------+
+| P1   |     1000 |
+| P2   |      300 |
+| P3   |     3500 |
+| P4   |     1300 |
+| P5   |     1100 |
+| P6   |     1300 |
++------+----------+
+
+6.Display the average Quantity sold for each part.
+
+w3_80747_vivek>select `p#`, avg(qty) from SP  group by `p#`  order by 1;
++------+----------+
+| p#   | avg(qty) |
++------+----------+
+| P1   | 333.3333 |
+| P2   | 150.0000 |
+| P3   | 388.8889 |
+| P4   | 650.0000 |
+| P5   | 275.0000 |
+| P6   | 325.0000 |
++------+----------+
+
+7. Display the maximum Quantity sold for each part,
+provided the maximum Quantity is greater than 800.
+
+w3_80747_vivek>SELECT `p#`, MAX(qty) AS max_quantity FROM SP WHERE`p#` IN ('p1', 'p2', 'p3','p4','p5','p6') GROUP BY`p#`;
++------+--------------+
+| p#   | max_quantity |
++------+--------------+
+| P1   |          700 |
+| P3   |          800 |
+| P5   |          500 |
+| P4   |          800 |
+| P6   |          500 |
+| P2   |          200 |
++------+--------------+
+
+w3_80747_vivek>select `p#`,sum(QTY)  from SP  group by `p#` 
+    -> having sum(qty) >800;
++------+----------+
+| p#   | sum(QTY) |
++------+----------+
+| P1   |     1000 |
+| P3   |     3500 |
+| P5   |     1100 |
+| P4   |     1300 |
+| P6   |     1300 |
++------+----------+
+
+
+8. Display the Status and the count of Suppliers with
+that Status.
+
+w3_80747_vivek>select status ,count(`s#`) from S group by status order by 1;
++--------+-------------+
+| status | count(`s#`) |
++--------+-------------+
+|     10 |           1 |
+|     20 |           2 |
+|     30 |           2 |
++--------+-------------+
+
+9. Display the count of Projects going on in different
+cities.
+
+w3_80747_vivek>select city,count(`j#`) projrct_count from J group by city;
++--------+---------------+
+| city   | projrct_count |
++--------+---------------+
+| Paris  |             1 |
+| Rome   |             1 |
+| Athens |             2 |
+| london |             2 |
+| Oslo   |             1 |
++--------+---------------+
+
+10. What is the difference between COUNT(Status) and
+COUNT(*) ?
+
+count(status): gives count of number of rows where status is not having null value;
+               means if table have 5 row ,but 1 row have status vallue null then it gives
+               count as 4.
+
+count(*): gives total number of rows present in tables including null rows
+
+11. Display the Status and the Count of Suppliers with
+that Status in the following format as shown below:-
+Status   Count
+Ten        1
+Twenty     2
+Thirty     3
+
+w3_80747_vivek>select   case when status=10 then'ten' when status=20 then 'twenty' when status=30 then 'thirty' end "status",count(`s#`) from S group by status order by 1;
++--------+-------------+
+| status | count(`s#`) |
++--------+-------------+
+| ten    |           1 |
+| thirty |           2 |
+| twenty |           2 |
++--------+-------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

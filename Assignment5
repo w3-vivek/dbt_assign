@@ -87,6 +87,8 @@ w3_80747_vivek>Select * from ORDERS where NOT ((odate = '1990-10-03' OR snum >10
 Select snum, sname, city, comm From SALESPEOPLE where
 (comm > .12 OR comm <.14);
 
+ans:select * from SALESPEOPLE;
+
 
 
 
