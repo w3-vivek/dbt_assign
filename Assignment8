@@ -1,0 +1,74 @@
+1) Assume each salesperson has a 12% commission.
+Write a query on the orders table that will produce
+the order number, the salesperson number, and the
+amount of the salesperson’s commission for that
+order.
+
+
+w3_80747_vivek>select onum,snum,amt*.12 comm_amt from ORDERS order by 1;
++------+------+----------+
+| onum | snum | comm_amt |
++------+------+----------+
+| 3001 | 1007 |     2.24 |
+| 3002 | 1004 |   228.01 |
+| 3003 | 1001 |    92.06 |
+| 3005 | 1002 |   620.34 |
+| 3006 | 1007 |   131.78 |
+| 3007 | 1002 |     9.09 |
+| 3008 | 1001 |   566.76 |
+| 3009 | 1003 |   205.59 |
+| 3010 | 1002 |   157.19 |
+| 3011 | 1001 |  1187.03 |
++------+------+----------+
+
+2) Write a query on the Customers table that will
+find the highest rating in each city. Put the
+output in this form:
+For the city (city), the highest rating is :
+(rating).
+
+w3_80747_vivek>select concat(concat('For the city ', city) ,concat(' the highest rating is:',max(rating) )) from CUSTOMER
+    -> group by city;
++---------------------------------------------------------------------------------------+
+| concat(concat('For the city ', city) ,concat(' the highest rating is:',max(rating) )) |
++---------------------------------------------------------------------------------------+
+| For the city london the highest rating is:100                                         |
+| For the city rome the highest rating is:200                                           |
+| For the city san jose the highest rating is:300                                       |
+| For the city berlin the highest rating is:300                                         |
++---------------------------------------------------------------------------------------+
+
+3) Write a query that lists customers in
+descending order of rating. Output the rating
+field first, followed by the customer’s name and
+number.
+
+
+w3_80747_vivek>select rating,cname,cnum from CUSTOMER order by rating desc;
++--------+----------+------+
+| rating | cname    | cnum |
++--------+----------+------+
+|    300 | grass    | 2004 |
+|    300 | cisneros | 2008 |
+|    200 | giovanni | 2002 |
+|    200 | liu      | 2003 |
+|    100 | hoffman  | 2001 |
+|    100 | clemens  | 2006 |
+|    100 | pereira  | 2007 |
++--------+----------+------+
+
+4) Write a query that totals the orders for each
+day and places the results in descending order.
+
+w3_80747_vivek>select odate,count(onum) from ORDERS group by odate order by 2 desc;
++------------+-------------+
+| odate      | count(onum) |
++------------+-------------+
+| 1990-10-03 |           5 |
+| 1990-10-04 |           2 |
+| 1990-10-06 |           2 |
+| 1990-10-05 |           1 |
++------------+-------------+
+
+
+
