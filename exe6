@@ -1,0 +1,151 @@
+1. Display all the Suppliers with the same Status
+as the supplier, ‘CLARK’.
+
+w3_80747_vivek>select * from S where status= (select status from S where sname='clark');
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| s1   | Smith |     20 | london |
+| s4   | Clark |     20 | london |
++------+-------+--------+--------+
+
+
+2. Display all the Employees in the same
+department as the employee ‘MILLER’.
+
+
+
+
+3. Display all the Parts which have more Weight than all the Red parts.
+
+w3_80747_vivek>select * from P where weight > (select max(weight) from P where color='red');
+Empty set (0.00 sec)
+
+
+4. Display all the Projects going on in the same city as the project ‘TAPE’.
+
+w3_80747_vivek>select * from J
+    -> where city=
+    -> (select city from J 
+    -> where jname='tape');
++------+-----------+--------+
+| j#   | Jname     | City   |
++------+-----------+--------+
+| j5   | Collector | london |
+| j7   | Tape      | london |
++------+-----------+--------+
+
+
+5. Display all the Parts with Weight less than all the Green parts.
+
+w3_80747_vivek>select * from P
+    -> where weight <
+    -> (select weight from P 
+    -> where color='green');
++------+-------+-------+--------+--------+
+| p#   | Pname | Color | Weight | City   |
++------+-------+-------+--------+--------+
+| p1   | Nut   | Red   |     12 | london |
+| p4   | Screw | Red   |     14 | london |
+| p5   | Cam   | Blue  |     12 | Paris  |
++------+-------+-------+--------+--------+
+
+6. Display the name of the Supplier who has sold
+the maximum Quantity (in one sale)
+
+w3_80747_vivek>select sname ,qty from SP,S
+    -> where SP.`s#`=S.`s#`
+    -> having qty=
+    ->  ( select max(qty) from SP);
++-------+------+
+| sname | qty  |
++-------+------+
+| Jones |  800 |
+| Adams |  800 |
++-------+------+
+
+7. Display the name of the Employee with the
+minimum Salary
+
+w3_80747_vivek>SELECT EMPNAME FROM SEMP
+    -> WHERE BASIC=
+    -> (SELECT MIN(BASIC) FROM SEMP);
++---------+
+| EMPNAME |
++---------+
+| ALI     |
++---------+
+
+8. Display the name of the Supplier who has sold
+the maximum overall Quantity (sum of Sales).
+
+
+w3_80747_vivek>select sname from S 
+where `s#` = 
+(select `s#` from SP group by `s#` 
+having sum(qty)= 
+(select max(sum_qty) from (select sum(qty)as sum_qty from SP group by `S#`)as t) );
+
++-------+
+| sname |
++-------+
+| Jones |
++-------+
+
+w3_80747_vivek>select deptname from SDEPT 
+    -> where deptno=
+    -> (select deptno from SEMP group by deptno
+    ->  having count(deptno)=
+    -> (select max(count_deptno) from (select count(deptno) count_deptno from SEMP group by deptno)abc));
++-------------+
+| deptname    |
++-------------+
+| Development |
++-------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
